@@ -5,12 +5,15 @@
  */
 package mayormenorventanas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
  */
 public class MiPantalla extends javax.swing.JFrame {
 int n_aleatorio=0;
+int numero_intentos=0;
     /**
      * Creates new form MiPantalla
      */
@@ -32,6 +35,11 @@ int n_aleatorio=0;
         txtNumeroUsuario = new javax.swing.JTextField();
         btnComprobar = new javax.swing.JButton();
         lblRespuestaUsuario = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        btnGrabarPutuacion = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtNumeroIntentos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,13 +55,28 @@ int n_aleatorio=0;
         txtNumeroUsuario.setEnabled(false);
 
         btnComprobar.setText("Probar");
-        btnComprobar.setActionCommand("Probar");
         btnComprobar.setEnabled(false);
         btnComprobar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnComprobarMouseClicked(evt);
             }
         });
+
+        jLabel2.setText("Nombre:");
+
+        txtNombre.setEnabled(false);
+
+        btnGrabarPutuacion.setText("Grabar");
+        btnGrabarPutuacion.setEnabled(false);
+        btnGrabarPutuacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGrabarPutuacionMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setText("Numero de intentos:");
+
+        txtNumeroIntentos.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,7 +85,7 @@ int n_aleatorio=0;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
+                        .addGap(182, 182, 182)
                         .addComponent(btnEmpezar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -73,22 +96,44 @@ int n_aleatorio=0;
                         .addComponent(btnComprobar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(lblRespuestaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblRespuestaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGrabarPutuacion)))
                 .addContainerGap(86, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNumeroIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNumeroIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEmpezar)
-                .addGap(23, 23, 23)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNumeroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnComprobar))
                 .addGap(38, 38, 38)
                 .addComponent(lblRespuestaUsuario)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGrabarPutuacion))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,7 +141,7 @@ int n_aleatorio=0;
 
     private void btnEmpezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpezarMouseClicked
         // TODO add your handling code here:
-        
+        txtNumeroIntentos.setText("0");
         //Pensar un número aleatorio
         n_aleatorio=(int)(Math.random()*9);
         //Habilitar el textfield
@@ -111,6 +156,8 @@ int n_aleatorio=0;
     private void btnComprobarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprobarMouseClicked
         // TODO add your handling code here:
         //1-Ver qué numero ha escrito el usuario
+        numero_intentos++;
+        txtNumeroIntentos.setText(String.valueOf(numero_intentos));
         String n_usuario=txtNumeroUsuario.getText();
         
         int n_usuario_int=Integer.parseInt(n_usuario);
@@ -118,6 +165,9 @@ int n_aleatorio=0;
         String respuesta="";
         if(n_aleatorio==n_usuario_int)
         {
+            //JOptionPane.showMessageDialog(null, "ENhorabuena");
+            txtNombre.setEnabled(true);
+            btnGrabarPutuacion.setEnabled(true);
             respuesta="Enhorabuena";
             btnEmpezar.setText("Volver a jugar");
             btnEmpezar.setEnabled(true);
@@ -138,6 +188,21 @@ int n_aleatorio=0;
        
         
     }//GEN-LAST:event_btnComprobarMouseClicked
+
+    private void btnGrabarPutuacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGrabarPutuacionMouseClicked
+        // TODO add your handling code here:
+        String nombre=txtNombre.getText();
+        Ranking r=new Ranking(nombre, numero_intentos);
+        boolean grabacion_ok=AccesoDatos.grabarRanking(r);
+        if(grabacion_ok)
+        {
+            JOptionPane.showMessageDialog(null, "Puntuación grabada con éxito");
+            txtNombre.setText("");
+            txtNombre.setEnabled(false);
+            btnGrabarPutuacion.setEnabled(false);
+            
+        }
+    }//GEN-LAST:event_btnGrabarPutuacionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -177,8 +242,13 @@ int n_aleatorio=0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprobar;
     private javax.swing.JButton btnEmpezar;
+    private javax.swing.JButton btnGrabarPutuacion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblRespuestaUsuario;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumeroIntentos;
     private javax.swing.JTextField txtNumeroUsuario;
     // End of variables declaration//GEN-END:variables
 }
